@@ -1,0 +1,58 @@
+%head
+  %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
+  %link{ rel:"stylesheet", href:"milligram.min.css" }
+
+  :css
+    body {
+      background-color: #f9f9f9;
+    }
+    input.button {
+      background-color: #007dc1;
+      border-color: #004b75;
+      width: 100%;
+      text-transform: none;
+    }
+    label {
+      display: none;
+    }
+    .card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: .4rem;
+    }
+    .row .column {
+      padding: 5rem;
+    }
+    .center {
+      text-align: center;
+    }
+    .error {
+      padding: 1rem;
+      font-size: 70%;
+      margin: 3px;
+      margin-bottom: 1rem;
+      color: red;
+      border: 1px solid red;
+    }
+
+
+%body
+  .row
+    .column.column-33.column-offset-33.card
+      %h1.center Mokta
+      %hr
+      %h5.center Sign In
+
+      - if @error
+        .card.error
+          = @error
+
+      %form{ name: "login", id: "login-form", action: "/login", method: "post", autocomplete: "off" }
+        %fieldset
+          %label{ for: "username" } Username:
+          %input#okta-signin-username{ type: "text", name: "username", value: "", placeholder: "Username" }
+
+          %label{ for: "password" } Password:
+          %input#okta-signin-password{ type: "password", name: "password", placeholder: "Password" }
+
+          %input#okta-signin-submit.button{ type: "submit", value: "Sign In" }
